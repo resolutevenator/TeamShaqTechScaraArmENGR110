@@ -1,1 +1,5 @@
-Folder of all kintematic equations
+Direct Kinematic Equations:
+
+1:
+xj2 = xm2 + R.cos(ϴ2)
+yj2 = ym2 + R.sin(ϴ2) 
