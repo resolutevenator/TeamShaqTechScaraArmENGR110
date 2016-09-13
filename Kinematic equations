@@ -3,3 +3,10 @@ Direct Kinematic Equations:
 1:
 xj2 = xm2 + R.cos(ϴ2)
 yj2 = ym2 + R.sin(ϴ2) 
+
+2:
+yA = yj1 + 0.5(yj2-yj1)
+
+3:
+h = sqrt ( R^2 - ((j2-j1)/2)^2
+
