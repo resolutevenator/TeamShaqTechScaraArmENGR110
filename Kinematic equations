@@ -10,3 +10,7 @@ yA = yj1 + 0.5(yj2-yj1)
 3:
 h = sqrt ( R^2 - ((j2-j1)/2)^2
 
+4:
+xT2 = xA -h.cos(pi/2 - α)
+yT2 = yA - h.sin(pi/2 - α) 
+
