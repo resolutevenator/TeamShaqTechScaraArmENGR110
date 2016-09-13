@@ -14,3 +14,10 @@ h = sqrt ( R^2 - ((j2-j1)/2)^2
 xT2 = xA -h.cos(pi/2 - α)
 yT2 = yA - h.sin(pi/2 - α) 
 
+
+
+Inverse Kinematic Equations:
+
+1:
+xA = 0.5(xm2-T) + T
+yA = 0.5(ym2-T) + T
