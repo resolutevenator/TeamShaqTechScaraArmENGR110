@@ -19,5 +19,5 @@ yT2 = yA - h.sin(pi/2 - α)
 Inverse Kinematic Equations:
 
 1:
-xA = 0.5(xm2-T) + T
-yA = 0.5(ym2-T) + T
+xA = 0.5(xm2-Tx) + Tx
+yA = 0.5(ym2-Ty) + Ty
