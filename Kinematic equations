@@ -19,5 +19,26 @@ yT2 = yA - h.sin(pi/2 - α)
 Inverse Kinematic Equations:
 
 1:
-xA = 0.5(xm2-Tx) + Tx
-yA = 0.5(ym2-Ty) + Ty
+xA = 0.5(xT-xm2) + xm
+yA = 0.5(yT-m2) + ym
+
+Distance between M and T
+
+dmt = sqrt( (xm-xt)^2 - (ym-yt)^2  )
+
+Distance between T and A is half of that
+
+dta = dmt/2
+
+R^2 = h^2 + dta^2
+
+so  h = sqrt ( R^2 - dta^2 )
+
+therefore:
+
+xj21= xA + h · cos(α)
+yj21= yA + h · sin(α) 
+
+xj22 xA - h · cos(α)
+yj22 yA - h · sin(α) 
+
