@@ -176,7 +176,7 @@ public class Arm
         xj1 =xa+h*Math.cos(alpha);
         yj1 =xa+h*Math.cos(alpha);
 
-        ///theta1 = ...;
+        theta1 = Math.atan2(yj1 - yt,xj1-xt);
         if ((theta1>0)||(theta1<-Math.PI)){
             valid_state = false;
             UI.println("Ange 1 -invalid");
