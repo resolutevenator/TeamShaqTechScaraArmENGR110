@@ -56,11 +56,11 @@ public class Arm
      */
     public Arm()
     {
-        xm1 = 290; // set motor coordinates
-        ym1 = 372;
-        xm2 = 379;
+        xm1 = 287; // set motor coordinates
+        ym1 = 374;
+        xm2 = 377;
         ym2 = 374;
-        r = 156.0;
+        r = 154.0;
         theta1 = -90.0*Math.PI/180.0; // initial angles of the upper arms
         theta2 = -90.0*Math.PI/180.0;
         valid_state = false;
@@ -124,20 +124,22 @@ public class Arm
    public void directKinematic(){
        
        // midpoint between joints
-       //double  xa =.... ;
-       //double  ya =.... ;
+       double  xa = 0.5*(xj2-xj1)+xj1;
+       double  ya = 0.5*(yj2-yj1)+yj1 ;
        // distance between joints
-       //double d = ...;
+       double d = Math.sqrt(Math.pow((xj2-xj1),2) + Math.pow((yj1-yj2),2));
        if (d<2*r){
            valid_state = true;
          // half distance between tool positions
-         //double  h = ...;
-         //double alpha= ...;
+         double  h = d/2;
+         /**maybe xj2,xj1 and yj2,yj1 */
+         double alpha= Math.toDegrees(Math.atan((yj1-yj2)/(xj2-xj1)));
          // tool position
-        // double xt = ...;
-        // double yt = ...;
-         //  xt2 = xa - h.*cos(alpha-pi/2);
-         //  yt2 = ya - h.*sin(alpha-pi/2);
+         double xt = xa+h*Math.cos((Math.PI/2) - alpha);
+         double yt = ya+h*Math.sin((Math.PI/2) - alpha);
+         /** check this */
+         double xt2 = xa - h*Math.cos(alpha-Math.PI/2);
+         double yt2 = ya - h*Math.sin(alpha-Math.PI/2);
        } else {
            valid_state = false;
         }
@@ -147,7 +149,7 @@ public class Arm
     // motor angles from tool position
     // updetes variables of the class
     public void inverseKinematic(double xt_new,double yt_new){
-         
+        /** 
         valid_state = true;
         xt = xt_new;
         yt = yt_new;
@@ -202,6 +204,7 @@ public class Arm
         //UI.printf("xt:%3.1f, yt:%3.1f\n",xt,yt);
         //UI.printf("theta1:%3.1f, theta2:%3.1f\n",theta1*180/Math.PI,theta2*180/Math.PI);
         return;
+        */
     }
     
     // returns angle of motor 1
