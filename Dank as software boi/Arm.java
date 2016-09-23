@@ -129,7 +129,7 @@ public class Arm
         if (d<2*r){
             valid_state = true;
             // half distance between tool positions
-            double  h = d/2;
+            double  h = Math.sqrt(r*r - (d/2)*(d/2));
             /**maybe xj2,xj1 and yj2,yj1  for h*/
             double alpha= Math.atan((yj1-yj2)/(xj2-xj1));
             // tool position
