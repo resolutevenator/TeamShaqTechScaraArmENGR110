@@ -125,13 +125,13 @@ public class Arm
         double  xa = 0.5*(xj2-xj1)+xj1;
         double  ya = 0.5*(yj2-yj1)+yj1;
         // distance between joints
-        double d = Math.sqrt(Math.pow((xj2-xj1),2) + Math.pow((yj1-yj2),2));
+        double d = Math.sqrt(Math.pow((xj1-xj2),2) + Math.pow((yj1-yj2),2));
         if (d<2*r){
             valid_state = true;
             // half distance between tool positions
             double  h = d/2;
             /**maybe xj2,xj1 and yj2,yj1  for h*/
-            double alpha= Math.toDegrees(Math.atan((yj1-yj2)/(xj2-xj1)));
+            double alpha= Math.atan((yj1-yj2)/(xj2-xj1));
             // tool position
             double xt = xa+h*Math.cos((Math.PI/2) - alpha);
             double yt = ya+h*Math.sin((Math.PI/2) - alpha);
