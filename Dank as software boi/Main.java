@@ -35,7 +35,7 @@ public class Main{
         UI.addButton("Load path XY", this::load_xy);
         UI.addButton("Save path Ang", this::save_ang);
         UI.addButton("Load path Ang:Play", this::load_ang);
-                
+        UI.addButton("Save pwm",  this::doPwm);        
        // UI.addButton("Quit", UI::quit);
         UI.setMouseMotionListener(this::doMouse);
         UI.setKeyListener(this::doKeys);
@@ -152,6 +152,10 @@ public class Main{
         tool_path.convert_drawing_to_angles(drawing,arm,fname);
     }
     
+    public void doPwm(){
+        String convert = UIFileChooser.open();
+        arm.convert(convert);
+    }
     
     public void load_ang(){
         
