@@ -21,9 +21,7 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-
 /** ShaqTech Arm*/
-
 public class Arm
 {
 
@@ -253,20 +251,21 @@ public class Arm
     public int get_pwm1(){
         int pwm = 0;
         theta1 = Math.toDegrees(theta1);
-        pwm = (int)(-9 *theta1+ 723);
+        //pwm = (int)(-9 *theta1+ 723);
+        pwm = (int)(-10*theta1 + 170);
         return pwm;
     }
     // ditto for motor 2
     public int get_pwm2(){
         int pwm =0;
         theta2 = Math.toDegrees(theta2);
-        pwm = (int)(-11 *theta2 + 850);
-        //pwm = (int)(pwm2_90 + (theta2 - 90)*pwm2_slope);
+        //pwm = (int)(-11 *theta2 + 850);
+        pwm = (int)(-10*theta2 + 770);
         return pwm;
     }
-    
+
     public void convert(String fname){
-        
+
         try {
 
             String save = UIFileChooser.save();
@@ -276,25 +275,44 @@ public class Arm
             OutputStreamWriter osw = new OutputStreamWriter(is);    
             Writer w = new BufferedWriter(osw);
             String str_out;
-            
+            ArrayList<Double> list = new ArrayList<Double>();
             while(scan.hasNext()){
+                list.add(scan.nextDouble());
+                //double x1 = scan.nextDouble();
+                //double y1 = scan.nextDouble();
+                //int pen = (int)scan.nextDouble();
 
-                double x = scan.nextDouble();
-                double y = scan.nextDouble();
-                int pen = (int)scan.nextDouble();
-                inverseKinematic(x,y);
-                
-                str_out = 
-                    (get_pwm1()+","+get_pwm2()+","+pen + "000\r\n");
-         
-                w.write(str_out);
+                //inverseKinematic(x,y);
+
+                //str_out = 
+                //(get_pwm1()+","+get_pwm2()+","+pen + "000\r\n");
+
+                //w.write(str_out);
+            }
+            for(int i = 0; i<list.size()-3; i+=3){
+                double x = list.get(i);
+                double y = list.get(i+1);
+                //inverseKinematic(x,y);
+                double pen = (list.get(i+2));
+                    int penInt = (int)(pen);
+                double x2 = list.get(i+3);
+                double y2 = list.get(i+4);
+                //str_out = (get_pwm1()+","+get_pwm2()+","+pen + "000\r\n");
+                //w.write(str_out);
+                for(int j = 0; j<35; j++){
+                    double xd = Math.abs(x+j*(x2-x)/25);
+                    double yd = Math.abs(y+j*(y2-y)/25);
+                    inverseKinematic(xd,yd);
+                    str_out = (get_pwm1()+","+get_pwm2()+","+penInt + "000\r\n");
+                    w.write(str_out);
+                }
 
             }
             w.close();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             UI.println("Problem writing to the file statsTest.txt");
         }
 
     }
-    }
-
+}

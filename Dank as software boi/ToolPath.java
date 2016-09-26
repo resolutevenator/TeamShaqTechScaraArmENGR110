@@ -55,14 +55,16 @@ public class ToolPath
 
     /**********CONVERT (X,Y) PATH into angles******************/
     public void convert_drawing_to_angles(Drawing drawing,Arm arm,String fname){
-
+        UI.println("here");
         // for all points of the drawing...        
         for (int i = 0;i < drawing.get_drawing_size()-1;i++){ 
+            UI.println("in first for loop");
             // take two points
             PointXY p0 = drawing.get_drawing_point(i);
             PointXY p1 = drawing.get_drawing_point(i+1);
             // break line between points into segments: n_steps of them
             for ( int j = 0 ; j< n_steps;j++) { // break segment into n_steps str. lines
+                UI.println("in second for loop");
                 double x = p0.get_x() + j*(p1.get_x()-p0.get_x())/n_steps;
                 double y = p0.get_y() + j*(p1.get_y()-p0.get_y())/n_steps;
                 arm.inverseKinematic(x, y);

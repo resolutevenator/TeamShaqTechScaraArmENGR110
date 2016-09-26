@@ -152,8 +152,10 @@ public class Main{
         tool_path.convert_drawing_to_angles(drawing,arm,fname);
     }
     
-    public void doPwm(){
+    public void doPwm(){   
+        
         String convert = UIFileChooser.open();
+        //tool_path.convert_drawing_to_angles(drawing, arm, "");
         arm.convert(convert);
     }
     
