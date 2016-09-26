@@ -5,9 +5,22 @@
  * @0.0
  */
 
-import ecs100.UI;
+import ecs100.*;
 import java.awt.Color;
+import ecs100.UI;
 import java.util.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 
 /** ShaqTech Arm*/
 
@@ -239,13 +252,49 @@ public class Arm
     // linear intepolation
     public int get_pwm1(){
         int pwm = 0;
+        theta1 = Math.toDegrees(theta1);
+        pwm = (int)(-9 *theta1+ 723);
         return pwm;
     }
     // ditto for motor 2
     public int get_pwm2(){
         int pwm =0;
+        theta2 = Math.toDegrees(theta2);
+        pwm = (int)(-11 *theta2 + 850);
         //pwm = (int)(pwm2_90 + (theta2 - 90)*pwm2_slope);
         return pwm;
     }
+    
+    public void convert(String fname){
+        
+        try {
 
-}
+            String save = UIFileChooser.save();
+            File text = new File(save);
+            Scanner scan = new Scanner (new File(fname));
+            FileOutputStream is = new FileOutputStream(text);
+            OutputStreamWriter osw = new OutputStreamWriter(is);    
+            Writer w = new BufferedWriter(osw);
+            String str_out;
+            
+            while(scan.hasNext()){
+
+                double x = scan.nextDouble();
+                double y = scan.nextDouble();
+                int pen = (int)scan.nextDouble();
+                inverseKinematic(x,y);
+                
+                str_out = 
+                    (get_pwm1()+","+get_pwm2()+","+pen + "000\r\n");
+         
+                w.write(str_out);
+
+            }
+            w.close();
+        } catch (IOException e) {
+            UI.println("Problem writing to the file statsTest.txt");
+        }
+
+    }
+    }
+
