@@ -1,4 +1,4 @@
-package ToWebSite;
+ 
 
 
 /**
@@ -21,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import java.awt.Color;
 
 
@@ -29,7 +28,7 @@ public class Drawing
 {
     
     // set of points
-    private ArrayList<PointXY> path;
+    private ArrayList<PointXY> path; 
 
     /**
      * Constructor for objects of class Drawing

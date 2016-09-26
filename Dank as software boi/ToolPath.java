@@ -1,13 +1,4 @@
 
-/**
- * ToolPath stores motor contol signals (pwm)
- * and motor angles
- * for given drawing and arm configuration.
- * Arm hardware takes sequence of pwm values 
- * to drive the motors
- * @Arthur Roberts 
- * @1000000.0
- */
 import ecs100.UI;
 import java.util.*;
 import java.io.BufferedWriter;
@@ -21,6 +12,16 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+/**
+ * ToolPath stores motor contol signals (pwm)
+ * and motor angles
+ * for given drawing and arm configuration.
+ * Arm hardware takes sequence of pwm values 
+ * to drive the motors
+ * @Arthur Roberts 
+ * @1000000.0
+ */
+
 
 public class ToolPath
 {
@@ -35,7 +36,7 @@ public class ToolPath
     ArrayList<Integer> pwm1_vector;
     ArrayList<Integer> pwm2_vector;
     ArrayList<Integer> pwm3_vector;
-
+    private Arm arm;
     /**
      * Constructor for objects of class ToolPath
      */
@@ -112,17 +113,14 @@ public class ToolPath
         }
     }
 
-    /** save file with motor control values
-    public void save_pwm_file(){
-    //...
-    }*/
-
-    //save file with motor control values
+    
+    
     public void save_pwm_file(String fname){
 
         for ( int i = 0 ; i < pwm1_vector.size(); i++){
             UI.printf(" pwm1=%d pwm2=%d pwm3=%d\n",
-                pwm1_vector.get(i), pwm2_vector.get(i), pwm3_vector.get(i));    
+                pwm1_vector.get(i), pwm2_vector.get(i), pwm3_vector.get(i));   
+          
         }
 
         try {
@@ -132,11 +130,13 @@ public class ToolPath
             OutputStreamWriter osw = new OutputStreamWriter(is);    
             Writer w = new BufferedWriter(osw);
             String str_out;
-
+            
             for (int i = 0; i < pwm1_vector.size() ; i++){
                 str_out = String.format("%d,%d,%d\n",
                     pwm1_vector.get(i), pwm2_vector.get(i), pwm3_vector.get(i));
+         
                 w.write(str_out);
+
             }
             w.close();
         } catch (IOException e) {
